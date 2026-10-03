@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Employee Login Portal</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+background:#031428;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:1000px;
+height:600px;
+display:flex;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0px 0px 20px #00aaff;
+}
+
+.left{
+width:50%;
+background:url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=1200') center/cover;
+padding:40px;
+color:white;
+}
+
+.left h1{
+font-size:50px;
+color:#00aaff;
+}
+
+.left p{
+font-size:22px;
+}
+
+.right{
+width:50%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+width:80%;
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:20px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#0066ff;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0044cc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+<h1>Secure Access</h1>
+<p>Trusted Protection</p>
+<p>We protect your data, privacy and digital world.</p>
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<h2>Employee Login Portal</h2>
+
+<form action="/login" method="POST">
+
+<label>Email</label>
+<input type="email" name="email"  placeholder="Enter your email">
+
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter your password">
+{% if error %}
+<p style="color:red;text-align:center;">
+    {{ error }}
+</p>
+{% endif %}
+
+<button type="submit">Login</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

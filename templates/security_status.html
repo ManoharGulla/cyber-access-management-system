@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAMS Security Status</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:#06192d;
+
+    color:white;
+
+}
+
+/* =========================
+   Header
+========================= */
+
+header{
+
+    height:55px;
+
+    background:#0b2d4f;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    box-shadow:0 0 15px #00aaff;
+
+}
+
+header h1{
+
+    color:#00d9ff;
+
+    font-size:18px;
+
+}
+
+.logout{
+
+    background:red;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:8px 18px;
+
+    border-radius:7px;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   Main Container
+========================= */
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:30px;
+
+}
+
+/* =========================
+   Page Title
+========================= */
+
+.page-title{
+
+    color:#00e5ff;
+
+    margin-bottom:25px;
+
+    font-size:25px;
+
+}
+
+/* =========================
+   Overall Status
+========================= */
+
+.overall{
+
+    background:#123456;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    box-shadow:0 0 12px #073b60;
+
+}
+
+.overall h2{
+
+    color:#00e5ff;
+
+    margin-bottom:15px;
+
+}
+
+.status{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+.green{
+
+    color:#00ff55;
+
+}
+
+.orange{
+
+    color:#ffaa00;
+
+}
+
+/* =========================
+   Security Sections
+========================= */
+
+.section{
+
+    background:#0f3057;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+}
+
+.section h2{
+
+    color:#00e5ff;
+
+    margin-bottom:20px;
+
+    font-size:20px;
+
+}
+
+/* =========================
+   Security Items
+========================= */
+
+.security-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.security-item{
+
+    background:#163d66;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.security-item span:first-child{
+
+    font-weight:bold;
+
+}
+
+.active{
+
+    color:#00ff55;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   Statistics
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.stat{
+
+    background:#163d66;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+}
+
+.stat h3{
+
+    font-size:15px;
+
+    margin-bottom:12px;
+
+}
+
+.stat p{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#00e5ff;
+
+}
+
+/* =========================
+   Back Button
+========================= */
+
+.back{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+.back a{
+
+    display:inline-block;
+
+    background:#007bff;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 25px;
+
+    border-radius:8px;
+
+}
+
+.back a:hover{
+
+    background:#0056b3;
+
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-top:35px;
+
+    font-size:13px;
+
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:800px){
+
+    .security-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     Header
+========================= -->
+
+<header>
+
+<h1>Cyber Access Management System (CAMS)</h1>
+
+<a href="/" class="logout">Logout</a>
+
+</header>
+
+
+<!-- =========================
+     Main
+========================= -->
+
+<div class="container">
+
+
+<h1 class="page-title">
+
+🛡 Security Status
+
+</h1>
+
+
+<!-- =========================
+     Overall Status
+========================= -->
+
+<div class="overall">
+
+<h2>Overall System Security</h2>
+
+<div class="status {{ overall_color }}">
+
+🟢 {{ overall_status }}
+
+</div>
+
+<p style="margin-top:12px;color:#ccc;">
+
+CAMS security controls are currently being monitored.
+
+</p>
+
+</div>
+
+
+<!-- =========================
+     Authentication Security
+========================= -->
+
+<div class="section">
+
+<h2>🔐 Authentication Protection</h2>
+
+<div class="security-grid">
+
+
+<div class="security-item">
+
+<span>Login Authentication</span>
+
+<span class="active">
+
+🟢 ACTIVE
+
+</span>
+
+</div>
+
+
+<div class="security-item">
+
+<span>Failed Login Protection</span>
+
+<span class="active">
+
+🟢 ACTIVE
+
+</span>
+
+</div>
+
+
+<div class="security-item">
+
+<span>Account Lockout</span>
+
+<span class="active">
+
+🟢 ACTIVE
+
+</span>
+
+</div>
+
+
+<div class="security-item">
+
+<span>Unauthorized Detection</span>
+
+<span class="active">
+
+🟢 ACTIVE
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     File Security
+========================= -->
+
+<div class="section">
+
+<h2>📁 File Security</h2>
+
+<div class="security-grid">
+
+
+<div class="security-item">
+
+<span>Secure File Storage</span>
+
+{% if secure_files %}
+
+<span class="active">
+🟢 ACTIVE
+</span>
+
+{% else %}
+
+<span style="color:red;font-weight:bold;">
+🔴 ERROR
+</span>
+
+{% endif %}
+
+</div>
+
+
+<div class="security-item">
+
+<span>File Access Control</span>
+
+{% if file_access_control %}
+
+<span class="active">
+🟢 ACTIVE
+</span>
+
+{% else %}
+
+<span style="color:red;font-weight:bold;">
+🔴 ERROR
+</span>
+
+{% endif %}
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     Logging
+========================= -->
+
+<div class="section">
+
+<h2>📝 Security Logging</h2>
+
+<div class="security-grid">
+
+
+<div class="security-item">
+
+<span>Authentication Logging</span>
+
+{% if login_logging %}
+
+<span class="active">
+🟢 ACTIVE
+</span>
+
+{% else %}
+
+<span style="color:red;font-weight:bold;">
+🔴 ERROR
+</span>
+
+{% endif %}
+
+</div>
+
+
+<div class="security-item">
+
+<span>Security Monitoring</span>
+
+<span class="active">
+
+🟢 ACTIVE
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     Statistics
+========================= -->
+
+<div class="section">
+
+<h2>📊 Authentication Overview</h2>
+
+<div class="stats">
+
+
+<div class="stat">
+
+<h3>✅ Successful Logins</h3>
+
+<p>{{ success }}</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>❌ Failed Logins</h3>
+
+<p>{{ failed }}</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>🚨 Locked Accounts</h3>
+
+<p>{{ locked }}</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>⚠ Unauthorized Attempts</h3>
+
+<p>{{ unauthorized }}</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     User Information
+========================= -->
+
+<div class="section">
+
+<h2>👤 Current Session</h2>
+
+<div class="security-item">
+
+<span>Authenticated User</span>
+
+<span style="color:#00e5ff;">
+
+{{ email }}
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="back">
+
+<a href="/dashboard">
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+
+<div class="footer">
+
+<p>Cyber Access Management System (CAMS)</p>
+
+<p>Security Monitoring Module • Flask • Python • Linux</p>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

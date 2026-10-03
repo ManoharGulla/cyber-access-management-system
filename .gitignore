@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+
+*.save
+*.deb
+
+logs/
+*.log
+
+.env
+.env.*
+
+venv/
+.venv/
+
+.DS_Store

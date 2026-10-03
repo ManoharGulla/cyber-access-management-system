@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Login History</title>
+
+<style>
+
+body{
+background:#06192d;
+font-family:Arial;
+color:white;
+padding:40px;
+}
+
+h1{
+text-align:center;
+color:#00d9ff;
+margin-bottom:30px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#00aaff;
+padding:15px;
+}
+
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #444;
+}
+
+tr:nth-child(even){
+background:#10365d;
+}
+
+tr:hover{
+background:#164b84;
+}
+
+.back{
+display:inline-block;
+margin-bottom:25px;
+background:#00aaff;
+padding:10px 20px;
+text-decoration:none;
+color:white;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="javascript:history.back()" class="back">⬅ Back to Dashboard</a>
+
+<h1>Login History</h1>
+
+<br>
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search by Email..."
+value="{{ search }}"
+style="padding:10px;width:300px;border-radius:8px;border:none;">
+
+<button
+type="submit"
+style="padding:10px 20px;border:none;background:#00aaff;color:white;border-radius:8px;cursor:pointer;">
+
+Search 🔍
+
+</button>
+
+</form>
+
+<br><br>
+
+<table>
+
+<tr>
+<th>Date & Time</th>
+<th>Email</th>
+<th>Status</th>
+<th>IP Address</th>
+</tr>
+
+{% for log in logs %}
+
+<tr>
+<td>{{ log.time }}</td>
+<td>{{ log.email }}</td>
+<td>
+
+{% if "SUCCESS" in log.status %}
+
+<span style="color:lime;font-weight:bold;">
+    {{ log.status }}
+</span>
+
+{% elif "FAILED LOGIN" in log.status %}
+
+<span style="color:red;font-weight:bold;">
+    {{ log.status }}
+</span>
+
+{% elif "ACCOUNT LOCKED" in log.status %}
+
+<span style="color:orange;font-weight:bold;">
+    {{ log.status }}
+</span>
+
+{% elif "UNAUTHORIZED" in log.status %}
+
+<span style="color:yellow;font-weight:bold;">
+    {{ log.status }}
+</span>
+
+{% elif "LOGIN BLOCKED" in log.status %}
+
+<span style="color:#ff9900;font-weight:bold;">
+    {{ log.status }}
+</span>
+
+{% else %}
+
+{{ log.status }}
+
+{% endif %}
+
+</td>
+<td>{{ log.ip }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

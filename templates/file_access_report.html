@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAMS File Access Report</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#07192d;
+    color:white;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    height:70px;
+    background:#0b2d4f;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 25px;
+
+    box-shadow:0 0 15px #00c3ff;
+}
+
+header h1{
+    color:#00d9ff;
+    font-size:20px;
+}
+
+.logout{
+    background:red;
+    padding:10px 20px;
+    border-radius:8px;
+
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+.logout:hover{
+    background:#c40000;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:35px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title{
+
+    color:#00e5ff;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    color:#aaa;
+
+    margin-bottom:30px;
+
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    background:#193d66;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 0 12px rgba(0,170,255,.15);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    background:#205181;
+
+    box-shadow:0 0 20px #00d9ff;
+
+}
+
+.stat-icon{
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
+
+.stat-card h2{
+
+    color:#00e5ff;
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.stat-card p{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+/* =========================
+   LOG TABLE
+========================= */
+
+.log-container{
+
+    background:#123456;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 12px rgba(0,170,255,.15);
+
+}
+
+.log-container h2{
+
+    color:#00e5ff;
+
+    margin-bottom:20px;
+
+}
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#0b2d4f;
+
+    color:#00d9ff;
+
+    padding:14px;
+
+    text-align:center;
+
+}
+
+td{
+
+    padding:13px;
+
+    text-align:center;
+
+    border-bottom:1px solid #285070;
+
+    color:#ddd;
+
+}
+
+tr:hover{
+
+    background:#17436b;
+
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+
+    color:#00ff55;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+.back a{
+
+    display:inline-block;
+
+    background:#007bff;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 25px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.back a:hover{
+
+    background:#0056b3;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:750px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<h1>
+Cyber Access Management System (CAMS)
+</h1>
+
+<a href="/" class="logout">
+Logout
+</a>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+
+<h1 class="title">
+📁 File Access Report
+</h1>
+
+<p class="subtitle">
+Monitor secure document access and download activity.
+</p>
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<div class="stats">
+
+
+<!-- TOTAL DOWNLOADS -->
+
+<div class="stat-card">
+
+<div class="stat-icon">
+📥
+</div>
+
+<h2>
+Total Downloads
+</h2>
+
+<p>
+{{ total_downloads }}
+</p>
+
+</div>
+
+
+<!-- UNIQUE USERS -->
+
+<div class="stat-card">
+
+<div class="stat-icon">
+👥
+</div>
+
+<h2>
+Unique Users
+</h2>
+
+<p>
+{{ unique_users }}
+</p>
+
+</div>
+
+
+<!-- UNIQUE FILES -->
+
+<div class="stat-card">
+
+<div class="stat-icon">
+📄
+</div>
+
+<h2>
+Unique Files
+</h2>
+
+<p>
+{{ unique_files }}
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     ACCESS LOG
+========================= -->
+
+<div class="log-container">
+
+<h2>
+📋 File Access History
+</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Time
+</th>
+
+<th>
+User
+</th>
+
+<th>
+File
+</th>
+
+<th>
+Action
+</th>
+
+<th>
+IP Address
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if logs %}
+
+{% for log in logs %}
+
+<tr>
+
+<td>
+{{ log.time }}
+</td>
+
+<td>
+{{ log.email }}
+</td>
+
+<td>
+📄 {{ log.filename }}
+</td>
+
+<td class="status">
+{{ log.status }}
+</td>
+
+<td>
+{{ log.ip }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="5">
+
+No file access records found.
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<div class="back">
+
+<a href="/reports">
+← Back to Reports
+</a>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="footer">
+
+<p>
+<b>Cyber Access Management System (CAMS)</b>
+</p>
+
+<br>
+
+<p>
+File Access Monitoring • Flask • Python • Linux • Splunk
+</p>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

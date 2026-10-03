@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAMS Reports</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#07192d;
+    color:white;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    height:70px;
+    background:#0b2d4f;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 25px;
+
+    box-shadow:0 0 15px #00c3ff;
+}
+
+header h1{
+    color:#00d9ff;
+    font-size:20px;
+}
+
+.logout{
+    background:red;
+    padding:10px 20px;
+    border-radius:8px;
+
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+.logout:hover{
+    background:#c40000;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:35px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title{
+    color:#00e5ff;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+/* =========================
+   REPORT GRID
+========================= */
+
+.report-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:20px;
+
+    width:100%;
+}
+
+/* =========================
+   REPORT CARD
+========================= */
+
+.report-card{
+
+    background:#193d66;
+
+    min-height:180px;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 0 12px rgba(0,170,255,.15);
+
+    transition:.3s;
+}
+
+.report-card:hover{
+
+    transform:translateY(-5px);
+
+    background:#205181;
+
+    box-shadow:0 0 20px #00d9ff;
+}
+
+.report-icon{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+}
+
+.report-card h2{
+
+    color:#00e5ff;
+
+    margin-bottom:12px;
+}
+
+.report-card p{
+
+    color:#ddd;
+
+    font-size:14px;
+
+    line-height:22px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.report-button{
+
+    margin-top:20px;
+
+    background:#007bff;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 22px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    display:inline-block;
+}
+
+.report-button:hover{
+
+    background:#0056b3;
+}
+
+/* =========================
+   DISABLED REPORT
+========================= */
+
+.report-button.disabled{
+
+    background:#555;
+
+    color:#aaa;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+}
+
+/* =========================
+   RECENT REPORTS
+========================= */
+
+.recent{
+
+    margin-top:40px;
+
+    background:#123456;
+
+    padding:25px;
+
+    border-radius:15px;
+}
+
+.recents causing  h2{
+
+    color:#00e5ff;
+
+    margin-bottom:20px;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#0b2d4f;
+
+    color:#00d9ff;
+
+    padding:14px;
+}
+
+td{
+
+    padding:14px;
+
+    text-align:center;
+
+    border-bottom:1px solid #285070;
+
+    color:#ddd;
+}
+
+.status{
+
+    color:#00ff55;
+
+    font-weight:bold;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back{
+
+    text-align:center;
+
+    margin-top:30px;
+}
+
+.back a{
+
+    display:inline-block;
+
+    background:#007bff;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 25px;
+
+    border-radius:8px;
+}
+
+.back a:hover{
+
+    background:#0056b3;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:750px){
+
+    .report-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<h1>
+Cyber Access Management System (CAMS)
+</h1>
+
+<a href="/" class="logout">
+Logout
+</a>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+
+<h1 class="title">
+📄 CAMS Security Reports
+</h1>
+
+<p class="subtitle">
+Generate and review security reports from CAMS activity.
+</p>
+
+
+<!-- =========================
+     REPORT CARDS
+========================= -->
+
+<div class="report-grid">
+
+
+<!-- =========================
+     SECURITY SUMMARY
+========================= -->
+
+<div class="report-card">
+
+<div class="report-icon">
+🛡
+</div>
+
+<h2>
+Security Summary
+</h2>
+
+<p>
+Overall security activity including
+authentication, account protection
+and security events.
+</p>
+
+<a href="/report/security_summary"
+   class="report-button">
+
+Generate Report
+
+</a>
+
+</div>
+
+
+<!-- =========================
+     AUTHENTICATION REPORT
+========================= -->
+
+<div class="report-card">
+
+<div class="report-icon">
+🔐
+</div>
+
+<h2>
+Authentication Report
+</h2>
+
+<p>
+Review successful logins, failed
+login attempts, account lockouts
+and unauthorized attempts.
+</p>
+
+<a href="/report/authentication"
+   class="report-button">
+
+Generate Report
+
+</a>
+
+</div>
+
+
+<!-- =========================
+     FILE ACCESS REPORT
+========================= -->
+
+<div class="report-card">
+
+<div class="report-icon">
+📁
+</div>
+
+<h2>
+File Access Report
+</h2>
+
+<p>
+Review secure document downloads
+and file access activity.
+</p>
+
+<a href="/report/file_access"
+   class="report-button">
+
+Genarate Report
+
+</a>
+
+</div>
+
+
+<!-- =========================
+     USER SECURITY REPORT
+========================= -->
+
+<div class="report-card">
+
+<div class="report-icon">
+👥
+</div>
+
+<h2>
+User Security Report
+</h2>
+
+<p>
+Review registered users, locked
+accounts and secure-file permissions.
+</p>
+
+<a href="/report/user_security"
+   class="report-button">
+
+Generate report
+
+</a>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     RECENT REPORTS
+========================= -->
+
+<div class="recent">
+
+<h2>
+📋 Recent Reports
+</h2>
+
+<table>
+
+<tr>
+
+<th>
+Report
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+
+<!-- SECURITY SUMMARY -->
+
+<tr>
+
+<td>
+Security Summary Report
+</td>
+
+<td class="status">
+Ready
+</td>
+
+<td>
+
+<a href="/report/security_summary"
+   class="report-button">
+
+View
+
+</a>
+
+</td>
+
+</tr>
+
+
+<!-- AUTHENTICATION -->
+
+<tr>
+
+<td>
+Authentication Report
+</td>
+
+<td class="status">
+Ready
+</td>
+
+<td>
+
+<a href="/report/authentication"
+   class="report-button">
+
+View
+
+</a>
+
+</td>
+
+</tr>
+
+
+<!-- FILE ACCESS -->
+
+<tr>
+
+<td>
+File Access Report
+</td>
+
+<td class="status">
+Ready
+</td>
+
+<td>
+
+<a href="/report/file_access"
+   class="report-button">
+view
+</a>
+
+</td>
+
+</tr>
+
+
+<!-- USER SECURITY -->
+
+<tr>
+
+<td>
+User Security Report
+</td>
+
+<td class="status">
+Ready
+</td>
+
+<td>
+
+<a href="/report/user_security"
+   class="report-button"
+   style="discplay:inline-block; text-decoration:none;">
+view
+</a>
+
+</td>
+
+</tr>
+
+
+</table>
+
+</div>
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<div class="back">
+
+<a href="/dashboard">
+← Back to Dashboard
+</a>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="footer">
+
+<p>
+<b>Cyber Access Management System (CAMS)</b>
+</p>
+
+<br>
+
+<p>
+Reports Module • Flask • Python • Linux • Splunk
+</p>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

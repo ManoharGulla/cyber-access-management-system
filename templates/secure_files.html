@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Secure Files</title>
+
+<style>
+
+body{
+
+background:#06192d;
+font-family:Arial;
+color:white;
+padding:40px;
+
+}
+
+.container{
+
+max-width:900px;
+margin:auto;
+
+}
+
+h1{
+
+color:#00d9ff;
+
+}
+
+.file{
+
+background:#123456;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+button{
+
+background:#00aaff;
+border:none;
+padding:10px 20px;
+color:white;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#0088cc;
+
+}
+
+.back{
+
+display:inline-block;
+margin-bottom:30px;
+color:white;
+text-decoration:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/dashboard" class="back">⬅ Back to Dashboard</a>
+
+<h1>📁 Secure Files</h1>
+
+<br>
+
+<h3>Welcome {{ email }}</h3>
+
+<div class="file">
+
+<div>
+
+<b>Company Policy.pdf</b>
+
+<br>
+
+Company Security Policy
+
+</div>
+
+<a href="/download/Company_Policy.pdf">
+<button>Download</button>
+
+</a>
+
+</div>
+
+<div class="file">
+
+<div>
+
+<b>Incident Response Plan.pdf</b>
+
+<br>
+
+SOC Incident Response Guide
+
+</div>
+
+<a href="/download/Incident_Response_Plan.pdf">
+<button>Download</button>
+
+</a>
+
+</div>
+
+<div class="file">
+
+<div>
+
+<b>Network Diagram.pdf</b>
+
+<br>
+
+Internal Network Architecture
+
+</div>
+
+<a href="/download/Network_Diagram.pdf">
+<button>Download</button>
+
+</a>
+
+</div>
+
+<div class="file">
+
+<div>
+
+<b>SOC Runbook.pdf</b>
+
+<br>
+
+Security Operations Procedures
+
+</div>
+
+<a href="/download/SOC_Runbook.pdf">
+<button>Download</button>
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

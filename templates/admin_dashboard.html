@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#06192d;
+color:white;
+}
+
+header{
+background:#0b2d4f;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 0 15px #00aaff;
+}
+
+header h1{
+color:#00d9ff;
+}
+
+.logout{
+text-decoration:none;
+background:red;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+}
+
+.container{
+padding:40px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+margin-top:30px;
+}
+
+.card{
+background:#123456;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 10px #00aaff;
+}
+
+.card h2{
+color:#00d9ff;
+margin-bottom:15px;
+}
+
+.card p{
+font-size:35px;
+font-weight:bold;
+color:lime;
+}
+
+.footer{
+text-align:center;
+margin-top:50px;
+color:#bbb;
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+table th{
+
+background:#0b2d4f;
+padding:15px;
+color:#00d9ff;
+
+}
+
+table td{
+
+padding:15px;
+border-bottom:1px solid #333;
+text-align:center;
+
+}
+
+button{
+
+padding:8px 15px;
+border:none;
+border-radius:6px;
+background:#007bff;
+color:white;
+cursor:pointer;
+margin:3px;
+
+}
+
+button:disabled{
+
+background:#666;
+cursor:not-allowed;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🔐 CAMS Admin Dashboard</h1>
+
+<a href="/" class="logout">Logout</a>
+
+</header>
+
+<div class="container">
+
+<h2>Welcome Admin</h2>
+
+<p>{{ email }}</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>Total Users</h2>
+<p>{{ total_users }}</p>
+</div>
+
+<div class="card">
+<h2>Locked Users</h2>
+<p>{{ locked_users }}</p>
+</div>
+
+<div class="card">
+<h2>Successful Logins</h2>
+<p>{{ success }}</p>
+</div>
+
+<div class="card">
+<h2>Failed Logins</h2>
+<p>{{ failed }}</p>
+</div>
+
+<div class="card">
+<h2>Unauthorized Attempts</h2>
+<p>{{ unauthorized }}</p>
+</div>
+
+<div class="card">
+<h2>System Status</h2>
+<p>🟢 Secure</p>
+</div>
+
+</div>
+
+<br><br>
+
+<h2>User Management</h2>
+
+<br>
+
+<table>
+
+<tr>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+    <td>{{ user }}</td>
+
+    <td>
+
+    {% if user in locked_accounts %}
+
+        <span style="color:red;font-weight:bold;">
+        Locked
+        </span>
+
+    {% else %}
+
+        <span style="color:lime;font-weight:bold;">
+        Active
+        </span>
+
+    {% endif %}
+
+    </td>
+
+    <td>
+
+    {% if user == email %}
+
+        <span style="color:#00d9ff;font-weight:bold;">
+        Protected (Admin)
+        </span>
+
+    {% elif user in locked_accounts %}
+
+        <a href="{{ url_for('unlock_user', email=user) }}">
+            <button style="background:green;">
+                Unlock
+            </button>
+        </a>
+
+    {% else %}
+
+        <a href="{{ url_for('lock_user', email=user) }}">
+            <button style="background:red;">
+                Lock
+            </button>
+        </a>
+
+    {% endif %}
+
+    {% if user != email %}
+
+        <a href="{{ url_for('reset_password', email=user) }}">
+            <button style="background:orange;">
+                Reset Password
+            </button>
+        </a>
+
+    {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="footer">
+
+<br>
+
+<p>Cyber Access Management System (CAMS)</p>
+
+<p>Admin Console • Flask • Python • Linux • Splunk</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
